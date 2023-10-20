@@ -1,9 +1,11 @@
-import Image from "next/image";
+"use client";
 
 export default function Home() {
+
   return (
     <>
-      <h1 className="text-2xl text-red-500"></h1>
+      <h1 className="text-2xl text-red-500 ml-10">
+      </h1>
     </>
   );
 }
