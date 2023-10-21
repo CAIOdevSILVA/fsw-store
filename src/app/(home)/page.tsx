@@ -1,6 +1,7 @@
 "use client";
 
 import Image from 'next/image';
+import Categories from './_components/Categories';
 
 export default function Home() {
 
@@ -15,6 +16,10 @@ export default function Home() {
           className='w-full h-auto'
           alt='Até 55% de desconto nesse mês!'
         />
+
+        <div className='mt-8'>
+          <Categories />
+        </div>
       </div>
     </>
   );
