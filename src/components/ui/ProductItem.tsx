@@ -48,7 +48,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
           <div className="flex items-center gap-2">
             {product.discountPercent > 0 ? (
               <>
-                <p className="font-semibold">
+                <p className="font-semibold text-primary">
                   {getCurrency(product.totalPrice)}
                 </p>
 
@@ -57,7 +57,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
                 </p>
               </>
             ) : (
-              <p className="text-sm font-semibold">
+              <p className="text-sm font-semibold text-primary">
                 {getCurrency(Number(product.basePrice))}
               </p>
             )}
