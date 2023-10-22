@@ -1,46 +1,51 @@
-import Image from 'next/image';
-import Categories from './_components/Categories';
-import ProductList from './_components/ProductList';
+import Image from "next/image";
+import Categories from "./_components/Categories";
+import ProductList from "./_components/ProductList";
 
-import { prismaClient } from '@/lib/prisma';
+import { prismaClient } from "@/lib/prisma";
+import SectionTitle from "./_components/SectionTitle";
+import PromoBanner from "./_components/PromoBanner";
 
 export default async function Home() {
   const deals = await prismaClient.product.findMany({
     where: {
       discountPercent: {
-        gt: 0 //discount maior que 0
-      }
-    }
+        gt: 0, //discount maior que 0
+      },
+    },
   });
 
+  const keyboards = await prismaClient.product.findMany({
+    where: {
+      category: {
+        slug: "keyboards",
+      },
+    },
+  });
 
   return (
     <>
-      <div className='p-5 space-y-8'>
-        <Image 
-          src={'/banner-home-1.png'}
-          width={0}
-          height={0}
-          sizes='100vw'
-          className='w-full h-auto'
-          alt='Até 55% de desconto nesse mês!'
+      <div className="space-y-8 p-5">
+        <PromoBanner
+          src="/banner-home-1.png"
+          alt="Até 55% de desconto nesse mês!"
         />
 
         <Categories />
-        
+
         <div>
-          <p className='font-bold uppercase pl-5 mb-2'>Ofertas</p>
-          <ProductList products={deals}/>
+          <SectionTitle>Ofertas</SectionTitle>
+          <ProductList products={deals} />
         </div>
 
-        <Image 
-          src={'/banner-home-3.png'}
-          width={0}
-          height={0}
-          sizes='100vw'
-          className='w-full h-auto'
-          alt='Até 55% de desconto em mouses!'
+        <PromoBanner
+          src="/banner-home-3.png"
+          alt="Até 55% de desconto em teclados!"
         />
+        <div>
+          <SectionTitle>Teclados</SectionTitle>
+          <ProductList products={keyboards} />
+        </div>
       </div>
     </>
   );
