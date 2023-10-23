@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 
 import Header from "@/components/ui/Header";
 import "./globals.css";
+import Footer from '@/components/ui/Footer';
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -23,10 +24,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <AuthProvider>
-          <Header />
-          {children}
-        </AuthProvider>
+        <div className="flex h-full flex-col">
+          <AuthProvider>
+            <Header />
+            <div className="flex-1">
+             {children}
+            </div>
+            <Footer />
+          </AuthProvider>
+        </div>
       </body>
     </html>
   );
