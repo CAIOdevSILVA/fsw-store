@@ -13,11 +13,12 @@ import {
 } from 'lucide-react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { headerMenuContent } from '@/constants/constants';
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
 import ButtonHeader from './ButtonHeader';
 import Image from 'next/image'
 import { Avatar, AvatarFallback, AvatarImage } from './avatar';
 import { Separator } from './separator';
+import Link from 'next/link';
 
 const Header = () => {
 	const { status, data } = useSession();
@@ -80,12 +81,15 @@ const Header = () => {
 							)}
 							
 							{headerMenuContent.map((content) => (
-								<ButtonHeader
-									key={content.id}
-									id={content.id}
-									title={content.title}
-									icon={content.icon}
-								/>
+								<SheetClose  key={content.id} asChild>
+									<Link href={`${content.link}`}>
+										<ButtonHeader
+											id={content.id}
+											title={content.title}
+											icon={content.icon}
+										/>
+									</Link>
+								</SheetClose>
 							))}
 						</div>
 					</SheetContent>

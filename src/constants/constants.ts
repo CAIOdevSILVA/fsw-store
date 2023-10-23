@@ -9,16 +9,19 @@ export const headerMenuContent = [
   {
     id: 2,
     title: "Início",
-    icon: HomeIcon
+    icon: HomeIcon,
+    link: "/"
   },
   {
     id: 3,
     title: "Ofertas",
-    icon: PercentIcon
+    icon: PercentIcon,
+    link: '/'
   },
   {
     id: 4,
     title: "Catálogo",
-    icon: ListOrderedIcon
+    icon: ListOrderedIcon,
+    link: '/catalog'
   },
 ]
