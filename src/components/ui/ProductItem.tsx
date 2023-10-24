@@ -1,22 +1,17 @@
 import { ProductWithTotalPrice } from "@/helpers/product";
-import Image from "next/image";
 import { Badge } from "./badge";
 import { ArrowDownIcon } from "lucide-react";
+import { getCurrency } from '@/constants/constants';
+
 import Link from 'next/link';
+import Image from "next/image";
 
 interface ProductItemProps {
   product: ProductWithTotalPrice;
 }
 
 const ProductItem = ({ product }: ProductItemProps) => {
-  const getCurrency = (price: number) => {
-    const convertedPrice = new Intl.NumberFormat("us-US", {
-      style: "currency",
-      currency: "BRL",
-    }).format(price);
-
-    return convertedPrice;
-  };
+  
 
   return (
     <Link href={`/products/${product.slug}`}>

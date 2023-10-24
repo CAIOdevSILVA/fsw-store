@@ -25,3 +25,12 @@ export const headerMenuContent = [
     link: '/catalog'
   },
 ]
+
+export const getCurrency = (price: number) => {
+  const convertedPrice = new Intl.NumberFormat("us-US", {
+    style: "currency",
+    currency: "BRL",
+  }).format(price);
+
+  return convertedPrice;
+};
