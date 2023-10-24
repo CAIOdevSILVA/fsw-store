@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Categories from "./_components/Categories";
-import ProductList from "./_components/ProductList";
+import ProductList from "../../components/ui/ProductList";
 
 import { prismaClient } from "@/lib/prisma";
 import SectionTitle from "./_components/SectionTitle";
 import PromoBanner from "./_components/PromoBanner";
-import Footer from '@/components/ui/Footer';
+import Footer from "@/components/ui/Footer";
 
 export default async function Home() {
   const deals = await prismaClient.product.findMany({
