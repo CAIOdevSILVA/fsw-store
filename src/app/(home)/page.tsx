@@ -3,7 +3,7 @@ import Categories from "./_components/Categories";
 import ProductList from "../../components/ui/ProductList";
 
 import { prismaClient } from "@/lib/prisma";
-import SectionTitle from "./_components/SectionTitle";
+import SectionTitle from "../../components/ui/SectionTitle";
 import PromoBanner from "./_components/PromoBanner";
 import Footer from "@/components/ui/Footer";
 
