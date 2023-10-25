@@ -4,20 +4,20 @@ import DiscountBadge from '@/components/ui/DiscountBadge';
 import { Button } from "@/components/ui/button";
 import { getCurrency } from "@/constants/constants";
 import { ProductWithTotalPrice } from "@/helpers/product";
+import { CartContext } from '@/providers/cart';
 import {  ArrowLeftIcon, ArrowRightIcon, TruckIcon } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 interface ProductsInfoProps {
-  product: Pick<
-    ProductWithTotalPrice,
-    "basePrice" | "totalPrice" | "discountPercent" | "name" | "description"
-  >;
+  product: ProductWithTotalPrice;
 }
 
 const ProductsInfo = ({
-  product: { basePrice, discountPercent, totalPrice, name, description },
+  product,
 }: ProductsInfoProps) => {
   const [quantity, setQuantity] = useState(1);
+
+  const { addProductsToCart } = useContext(CartContext);
 
   const handleDecreaseQuantityClick = () => {
     setQuantity((prev) => (prev === 1 ? prev : prev - 1));
@@ -27,24 +27,28 @@ const ProductsInfo = ({
     setQuantity((prev) => prev + 1);
   };
 
+  const handleAddProductToCart = () => {
+    addProductsToCart({ ...product, quantity });
+  }
+
   return (
     <>
       <div className="flex flex-col space-y-6">
-        <h2 className="text-lg">{name}</h2>
+        <h2 className="text-lg">{product.name}</h2>
 
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl font-bold">{getCurrency(totalPrice)}</h1>
-            {discountPercent > 0 && (
+            <h1 className="text-xl font-bold">{getCurrency(product.totalPrice)}</h1>
+            {product.discountPercent > 0 && (
               <DiscountBadge>
-                {discountPercent}
+                {product.discountPercent}
               </DiscountBadge>
             )}
           </div>
 
-          {discountPercent > 0 && (
+          {product.discountPercent > 0 && (
             <p className="text-sm line-through opacity-75">
-              {getCurrency(Number(basePrice))}
+              {getCurrency(Number(product.basePrice))}
             </p>
           )}
         </div>
@@ -75,10 +79,10 @@ const ProductsInfo = ({
         <div className="flex flex-col gap-3">
           <h3 className="font-bold">Descrição</h3>
 
-          <p className="text-sm opacity-60 text-justify">{description}</p>
+          <p className="text-sm opacity-60 text-justify">{product.description}</p>
         </div>
 
-        <Button className='font-bold uppercase'>
+        <Button className='font-bold uppercase' onClick={handleAddProductToCart}>
           Adicionar ao carrinho
         </Button>
 
