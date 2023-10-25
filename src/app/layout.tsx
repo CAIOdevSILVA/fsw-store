@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Header from "@/components/ui/Header";
 import "./globals.css";
 import Footer from '@/components/ui/Footer';
+import { CartProvider } from '@/providers/cart';
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,11 +27,13 @@ export default function RootLayout({
       <body className={poppins.className}>
         <div className="flex h-full flex-col">
           <AuthProvider>
-            <Header />
-            <div className="flex-1">
-             {children}
-            </div>
-            <Footer />
+           <CartProvider>
+              <Header />
+              <div className="flex-1">
+                {children}
+              </div>
+              <Footer />
+           </CartProvider>
           </AuthProvider>
         </div>
       </body>
