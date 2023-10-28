@@ -66,11 +66,15 @@ const Cart = () => {
             </p>
           </div>
 
-          <Separator orientation="horizontal" />
-          <div className="flex-items flex justify-between text-xs">
-            <p>Entrega</p>
-            <p>GRÁTIS</p>
-          </div>
+          {products.length > 0 && (
+            <>
+              <Separator orientation="horizontal" />
+              <div className="flex-items flex justify-between text-xs">
+                <p>Entrega</p>
+                <p>GRÁTIS</p>
+              </div>
+            </>
+          )}
 
           <Separator orientation="horizontal" />
           <div className="flex-items flex justify-between text-xs">
